@@ -1,0 +1,14 @@
+{
+  "name": "csscomponents-mixins",
+  "version": "0.0.1",
+  "authors": [
+    "Joel Dawson <joel@theprojectfactory.com>"
+  ],
+  "description": "SASS Mixins",
+  "main": "csscomponents-mixins.scss",
+  "moduleType": [
+    "sass"
+  ],
+  "ignore": [],
+  "dependencies": {}
+}

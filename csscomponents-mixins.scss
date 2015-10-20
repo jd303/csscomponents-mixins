@@ -1,0 +1,113 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////// scf.SCSS.Mixins
+
+
+// Declare keyframes for all browsers
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} { @content; }
+	@-moz-keyframes #{$animationName} { @content; }
+	@-o-keyframes #{$animationName} { @content; }
+	@keyframes #{$animationName} { @content; }
+}
+
+
+// Declare an infinite number of animations
+// Name, duration, timing-function, delay, iteration-count, direction, fill-mode, play-state
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+
+// Browser-safe transform declaration
+@mixin transform($transform) {
+	-ms-transform:$transform;
+	-webkit-transform:$transform;
+	-o-transform:$transform;
+	-moz-transform:$transform;
+	transform:$transform;
+}
+
+
+// Browser-safe transform-origin declaration
+@mixin transform-origin($transform) {
+	-ms-transform-origin:$transform;
+	-webkit-transform-origin:$transform;
+	-o-transform-origin:$transform;
+	-moz-transform-origin:$transform;
+	transform-origin:$transform;
+}
+
+
+// Browser-safe transition declarations
+@mixin transition($statement...) {
+	-webkit-transition: $statement;
+	-moz-transition:	$statement;
+	-ms-transition:		$statement;
+	transition:			$statement;
+}
+
+
+// Browser-safe transition declarations
+@mixin -webkit-transition($statement...) {
+	-webkit-transition: $statement;
+}
+
+
+// Browser-safe two-point gradient creation
+@mixin gradient($direction, $colour1, $colour2, $important:"") {
+	background: -webkit-linear-gradient($direction, $colour1 , $colour2) unquote($important);
+	background: -o-linear-gradient($direction, $colour1 , $colour2) unquote($important);
+	background: -moz-linear-gradient($direction, $colour1 , $colour2) unquote($important);
+	background: -ms-linear-gradient($direction, $colour1 , $colour2) unquote($important);
+	background: linear-gradient($direction, $colour1 , $colour2) unquote($important);
+}
+
+
+// Browser-safe three-point gradient creation
+@mixin three-point-gradient($dir, $col1, $col2, $col3, $col4) {
+	background: -webkit-linear-gradient($dir, $col1, $col2, $col3, $col4);
+	background: -o-linear-gradient($dir, $col1, $col2, $col3, $col4);
+	background: -moz-linear-gradient($dir, $col1, $col2, $col3, $col4);
+	background: -ms-linear-gradient($dir, $col1, $col2, $col3, $col4);
+	background: linear-gradient($dir, $col1, $col2, $col3, $col4);
+}
+
+
+// Browser-safe multi-point gradient creation
+@mixin multi-point-gradient($dir, $color...) {
+	background: -webkit-linear-gradient($dir, $color);
+	background: -o-linear-gradient($dir, $color);
+	background: -moz-linear-gradient($dir, $color);
+	background: -ms-linear-gradient($dir, $color);
+	background: linear-gradient($dir, $color);
+}
+
+
+// Make any item browser-safe
+@mixin prefixProperty($propName, $val) {
+	-webkit-#{$propName}: $val;
+	-moz-#{$propName}: $val;
+	-ms-#{$propName}: $val;
+	#{$propName}: $val;
+}
+
+
+// Make any item browser-safe
+@mixin prefixPropertyWebkit($propName, $val) {
+	-webkit-#{$propName}: $val;
+	#{$propName}: $val;
+}
